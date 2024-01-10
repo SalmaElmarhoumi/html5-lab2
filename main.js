@@ -1,4 +1,4 @@
-//geo location
+//geoLocation
 
 
 let watchId;
@@ -115,48 +115,76 @@ let watchId;
 
         //webwork
 
-        // Create the first worker
-        const worker1 = new Worker('worker1.js');
+//         //first worker
+//         const worker1 = new Worker('worker1.js');
 
-        // Create the second worker
-        const worker2 = new Worker('worker2.js');
+//         //second worker
+//         const worker2 = new Worker('worker2.js');
 
-        // Handle messages from worker1
-        worker1.onmessage = function(event) {
-            console.log('Message from Worker 1:', event.data);
+//         // Handle messages from worker1
+//         worker1.onmessage = function(event) {
+//             console.log('Message from Worker 1:', event.data);
 
-            // Send a message to worker2
-            worker2.postMessage('Hello from Main Script to Worker 2!');
-        };
+//             // Send a message to worker2
+//             worker2.postMessage('Hello from Main Script to Worker 2!');
+//         };
 
-        // Handle messages from worker2
-        worker2.onmessage = function(event) {
-            console.log('Message from Worker 2:', event.data);
-        };
+//         // Handle messages from worker2
+//         worker2.onmessage = function(event) {
+//             console.log('Message from Worker 2:', event.data);
+//         };
 
-        // Send a message to worker1
-        worker1.postMessage('Hello from Main Script to Worker 1!');
+//         // Send a message to worker1
+//         worker1.postMessage('Hello from Main Script to Worker 1!');
         
 
-        // Worker 1
+//         // Worker 1
 
-// Handle messages from the main script
-onmessage = function(event) {
-    console.log('Message from Main Script to Worker 1:', event.data);
+// // Handle messages from the main script
+// onmessage = function(event) {
+//     console.log('Message from Main Script to Worker 1:', event.data);
 
-    // Send a message back to the main script
-    postMessage('Hello from Worker 1!');
-};
+//     // Send a message back to the main script
+//     postMessage('Hello from Worker 1!');
+// };
 
 
-// Worker 2
+// // Worker 2
 
-// Handle messages from the main script
-onmessage = function(event) {
-    console.log('Message from Main Script to Worker 2:', event.data);
+// // Handle messages from the main script
+// onmessage = function(event) {
+//     console.log('Message from Main Script to Worker 2:', event.data);
 
-    // Send a message back to the main script
-    postMessage('Hello from Worker 2!');
-};
+//     // Send a message back to the main script
+//     postMessage('Hello from Worker 2!');
+// };
+
+
+let worker1 = new Worker("worker1.js");
+let sum = document.getElementById("sum");
+let bg = document.getElementById("change-bg");
+let worker2 = new Worker("worker2.js");
+let num = document.getElementById("webworker2");
+
+sum.onclick = function (){
+    worker1.postMessage("");
+}
+
+worker1.onmessage = function (message) {
+    alert(message.data);
+}
+
+bg.onclick = function () {
+    document.body.style.background = (document.body.style.background === 'wheat') ? 'pink' : 'wheat';
+}
+
+num.onclick = function () {
+    worker2.postMessage("");
+}
+
+worker2.onmessage = function (message) {
+    alert(message.data);
+}
+
 
         
